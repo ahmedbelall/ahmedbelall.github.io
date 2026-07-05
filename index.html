@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أحمد بلال | أحمد بلال - Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --dark: #0f172a;
+            --slate: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --white: #ffffff;
+            --font-ar: 'Cairo', sans-serif;
+            --font-en: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            font-family: var(--font-ar);
+            overflow-x: hidden;
+        }
+
+        /* التحكم في اللغات عبر الـ CSS */
+        html[lang="ar"] .lang-en { display: none !important; }
+        html[lang="en"] .lang-ar { display: none !important; }
+        html[lang="en"] body { font-family: var(--font-en); }
+
+        /* شريط التنقل العلوي */
+        nav {
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: block;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+        }
+
+        .lang-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* الهيرو (المقدمة) */
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--slate) 100%);
+            color: var(--white);
+            padding: 8rem 2rem 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        header h1 span {
+            color: #818cf8;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #94a3b8;
+            color: var(--white);
+            box-shadow: none;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--white);
+        }
+
+        /* الحاوية العامة */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* شبكة العناصر */
+        .grid {
+            display: block;
+            text-align: center;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+            text-align: right;
+            display: inline-block;
+            width: 100%;
+            max-width: 360px;
+            vertical-align: top;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        html[lang="en"] .card {
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* التاجات والتقنيات */
+        .tags {
+            margin-bottom: 1.5rem;
+        }
+
+        .tags span {
+            background: #e0e7ff;
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .card-meta {
+            background: #f1f5f9;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--slate);
+        }
+
+        /* كروت الأسعار */
+        .price-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            position: relative;
+            margin-bottom: 2rem;
+            display: inline-block;
+            width: 100%;
+            max-width: 360px;
+            vertical-align: top;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.03);
+            background: linear-gradient(180deg, #fff 0%, #f5f3ff 100%);
+        }
+
+        .price-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            text-align: right;
+            padding: 0 1rem;
+        }
+
+        html[lang="en"] .price-features {
+            text-align: left;
+        }
+
+        .price-features li {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--slate);
+        }
+
+        .price-features li::before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* المميزات والموثوقية */
+        .features-section {
+            background: var(--white);
+            padding: 5rem 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .features-list {
+            max-width: 800px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .features-list li {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-right: 4px solid var(--primary);
+        }
+
+        html[lang="en"] .features-list li {
+            border-right: none;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* الفوتر والتواصل */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem 2rem 2rem;
+        }
+
+        footer h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #818cf8;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .card, .price-card {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <button class="lang-btn" onclick="toggleLanguage()">
+                <span class="lang-ar">English</span>
+                <span class="lang-en">العربية</span>
+            </button>
+        </div>
+    </nav>
+
+    <header>
+        <h1>
+            <span class="lang-ar">مرحباً، أنا <span>أحمد بلال</span></span>
+            <span class="lang-en">Hi, I am <span>Ahmed Belal</span></span>
+        </h1>
+        <p>
+            <span class="lang-ar">مطور ويب شامل (Full Stack Web Developer) بخبرة 3 سنوات. أقوم بتصميم وبرمجة مواقع ويب متكاملة، سريعة، آمنة تماماً ضد الثغرات ومتجاوبة مع كل الأجهزة بأسعار تنافسية أقل من سعر السوق.</span>
+            <span class="lang-en">Full Stack Web Developer with 3 years of experience. I build integrated, ultra-fast, high-security, and fully responsive websites at highly competitive prices below the market rate.</span>
+        </p>
+        <div>
+            <a href="https://wa.me/201500003346" target="_blank" class="btn">
+                <span class="lang-ar">تواصل معي واتساب</span>
+                <span class="lang-en">Contact Me via WhatsApp</span>
+            </a>
+            <a href="#pricing" class="btn btn-secondary">
+                <span class="lang-ar">رؤية خطط الأسعار</span>
+                <span class="lang-en">View Pricing Plans</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="container" id="portfolio">
+        <h2 class="section-title">
+            <span class="lang-ar">سابقة الأعمال والمشاريع</span>
+            <span class="lang-en">Portfolio & Projects</span>
+        </h2>
+        <p class="section-subtitle">
+            <span class="lang-ar">نماذج لمواقع تم تصميمها وتطويرها بالكامل بأعلى معايير الجودة</span>
+            <span class="lang-en">Samples of websites designed and fully developed with top quality standards</span>
+        </p>
+
+        <div class="grid">
+            <div class="card">
+                <h3>
+                    <span class="lang-ar">متجر الكتروني متكامل للأزياء</span>
+                    <span class="lang-en">E-Commerce Fashion Store</span>
+                </h3>
+                <p>
+                    <span class="lang-ar">موقع تجارة إلكترونية متكامل لبيع الملابس والعبايات مع سلة مشتريات ذكية، تصفية المنتجات، وصفحات دفع سريعة وآمنة.</span>
+                    <span class="lang-en">Full-featured e-commerce platform for clothing and fashion with a smart shopping cart, advanced filtering, and secure checkouts.</span>
+                </p>
+                <div class="tags">
+                    <span>React.js</span> <span>Laravel</span> <span>MySQL</span> <span>SEO</span>
+                </div>
+                <div class="card-meta">
+                    <span class="lang-ar">🛡️ مؤمن ضد ثغرات XSS و SQL Injection</span>
+                    <span class="lang-en">🛡️ Secured against XSS & SQL Injection</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <span class="lang-ar">منصة حجز واستشارات طبية</span>
+                    <span class="lang-en">Medical Booking Platform</span>
+                </h3>
+                <p>
+                    <span class="lang-ar">موقع ويب لعيادات ومراكز طبية يتيح للمرضى استعراض الخدمات، واختيار المواعيد المتاحة والحجز أونلاين فوراً.</span>
+                    <span class="lang-en">A modern website for clinics allowing patients to browse medical services, check availability, and book appointments instantly.</span>
+                </p>
+                <div class="tags">
+                    <span>React</span> <span>TypeScript</span> <span>Supabase</span> <span>UI/UX</span>
+                </div>
+                <div class="card-meta">
+                    <span class="lang-ar">⚡ سرعة فائقة وتجاوب كامل مع الموبايل</span>
+                    <span class="lang-en">⚡ Ultra-fast performance & 100% mobile responsive</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <span class="lang-ar">الموقع الرسمي لشركة عقارات</span>
+                    <span class="lang-en">Real Estate Corporate Website</span>
+                </h3>
+                <p>
+                    <span class="lang-ar">موقع تعريفي واحترافي متعدد الصفحات لعرض المشاريع العقارية والوحدات السكنية مع نماذج تواصل سريعة ومباشرة.</span>
+                    <span class="lang-en">A professional multi-page corporate website showcasing real estate projects and residential units with seamless contact forms.</span>
+                </p>
+                <div class="tags">
+                    <span>HTML5</span> <span>CSS3</span> <span>JavaScript</span> <span>Laravel</span>
+                </div>
+                <div class="card-meta">
+                    <span class="lang-ar">🔍 مهيأ للظهور في محركات البحث (SEO)</span>
+                    <span class="lang-en">🔍 Search Engine Optimized (SEO)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="pricing" style="background: #f1f5f9; max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">
+                <span class="lang-ar">خطط الأسعار المنافسة</span>
+                <span class="lang-en">Competitive Pricing Plans</span>
+            </h2>
+            <p class="section-subtitle">
+                <span class="lang-ar">أسعار واضحة ومناسبة أقل من الشركات لتناسب ميزانيتك</span>
+                <span class="lang-en">Transparent, cost-effective pricing cheaper than companies to fit your budget</span>
+            </p>
+
+            <div class="grid">
+                <div class="price-card">
+                    <div class="price-title">
+                        <span class="lang-ar">صفحة هبوط / موقع شخصي</span>
+                        <span class="lang-en">Landing Page / Personal Site</span>
+                    </div>
+                    <div class="price-amount">
+                        <span class="lang-ar">3,000 ج.م</span>
+                        <span class="lang-en">3,000 EGP</span>
+                    </div>
+                    <ul class="price-features">
+                        <li>
+                            <span class="lang-ar">تصميم احترافي من صفحة واحدة</span>
+                            <span class="lang-en">Professional single-page design</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">متجاوب تماماً مع الموبايل والتابلت</span>
+                            <span class="lang-en">Fully responsive on mobile/tablet</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">ربط السوشيال ميديا ونموذج الاتصال</span>
+                            <span class="lang-en">Social media & contact form setup</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">التسليم خلال: 5 - 7 أيام</span>
+                            <span class="lang-en">Delivery within: 5 - 7 Days</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/201500003346" target="_blank" class="btn" style="width: 100%;">
+                        <span class="lang-ar">اطلب الخدمة</span>
+                        <span class="lang-en">Order Now</span>
+                    </a>
+                </div>
+
+                <div class="price-card featured">
+                    <div class="price-title">
+                        <span class="lang-ar">موقع شركات تعريفي متكامل</span>
+                        <span class="lang-en">Full Corporate Website</span>
+                    </div>
+                    <div class="price-amount">
+                        <span class="lang-ar">6,000 ج.م</span>
+                        <span class="lang-en">6,000 EGP</span>
+                    </div>
+                    <ul class="price-features">
+                        <li>
+                            <span class="lang-ar">موقع متعدد الصفحات (عن الشركة، الخدمات..)</span>
+                            <span class="lang-en">Multi-page site (About, Services, etc.)</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">حماية كاملة من ثغرات الحقن والاختراق</span>
+                            <span class="lang-en">Full security against injections & exploits</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">تهيئة سريعة للظهور على جوجل (SEO)</span>
+                            <span class="lang-en">Fast integration for Google search (SEO)</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">التسليم خلال: 10 - 15 يوم</span>
+                            <span class="lang-en">Delivery within: 10 - 15 Days</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/201500003346" target="_blank" class="btn" style="width: 100%;">
+                        <span class="lang-ar">اطلب الخدمة</span>
+                        <span class="lang-en">Order Now</span>
+                    </a>
+                </div>
+
+                <div class="price-card">
+                    <div class="price-title">
+                        <span class="lang-ar">متجر إلكتروني شامل</span>
+                        <span class="lang-en">Comprehensive E-Commerce Store</span>
+                    </div>
+                    <div class="price-amount">
+                        <span class="lang-ar">12,000 ج.م</span>
+                        <span class="lang-en">12,000 EGP</span>
+                    </div>
+                    <ul class="price-features">
+                        <li>
+                            <span class="lang-ar">إضافة غير محدودة للمنتجات والأقسام</span>
+                            <span class="lang-en">Unlimited products and categories</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">لوحة تحكم سهلة لإدارة المبيعات والطلبات</span>
+                            <span class="lang-en">Easy dashboard to manage sales & orders</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">قاعدة بيانات MySQL سريعة ومنظمة</span>
+                            <span class="lang-en">Fast, structured MySQL database</span>
+                        </li>
+                        <li>
+                            <span class="lang-ar">التسليم خلال: 15 - 20 يوم</span>
+                            <span class="lang-en">Delivery within: 15 - 20 Days</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/201500003346" target="_blank" class="btn" style="width: 100%;">
+                        <span class="lang-ar">اطلب الخدمة</span>
+                        <span class="lang-en">Order Now</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-section">
+        <h2 class="section-title">
+            <span class="lang-ar">لماذا تختار العمل معي؟</span>
+            <span class="lang-en">Why Choose to Work With Me?</span>
+        </h2>
+        <p class="section-subtitle" style="margin-bottom: 2rem;">
+            <span class="lang-ar">ضمانات مميزة أقدمها لك لنجاح مشروعك واستقراره</span>
+            <span class="lang-en">Premium guarantees I offer for your project success and stability</span>
+        </p>
+        <ul class="features-list">
+            <li>
+                <span class="lang-ar"><strong>🛡️ أمان فائق وضد الاختراق:</strong> أقوم بتأمين موقعك يدوياً برمجياً من أشهر ثغرات الويب مثل (XSS, Data injection, JS & CSS injection).</span>
+                <span class="lang-en"><strong>🛡️ Top-Tier Security:</strong> I manually secure your code against major web vulnerabilities like XSS, Data injection, JS & CSS injection.</span>
+            </li>
+            <li>
+                <span class="lang-ar"><strong>🛠️ دعم فني مجاني ومستمر:</strong> بكون معاك في أي وقت، ولو حصلت أي مشكلة مفاجئة في الموقع بصلحهالك فوراً بدون أي مقابل مادي.</span>
+                <span class="lang-en"><strong>🛠️ Free Ongoing Support:</strong> I am with you anytime. If any unexpected bug occurs, I will fix it instantly for free.</span>
+            </li>
+            <li>
+                <span class="lang-ar"><strong>🔑 ملكية كاملة (السورس كود):</strong> بسلمك ملفات الكود الأصلي (Source Code) بالكامل اللي اشتغلت عليه بمجرد انتهاء العمل.</span>
+                <span class="lang-en"><strong>🔑 Full Ownership (Source Code):</strong> I hand over the complete and clean original Source Code files to you once finished.</span>
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        <h2>
+            <span class="lang-ar">هل أنت جاهز لبدء موقعك؟</span>
+            <span class="lang-en">Ready to Start Your Website?</span>
+        </h2>
+        <p>
+            <span class="lang-ar">تواصل معي الآن لتناقش فكرة موقعك ونبدأ التنفيذ فوراً</span>
+            <span class="lang-en">Get in touch now to discuss your website idea and start execution immediately</span>
+        </p>
+        <div class="contact-info">
+            <span class="lang-ar">📞 الموبايل / واتساب: </span>
+            <span class="lang-en">📞 Mobile / WhatsApp: </span>
+            01500003346
+        </div>
+        <a href="https://wa.me/201500003346" target="_blank" class="btn" style="background: var(--white); color: var(--dark); box-shadow: none;">
+            <span class="lang-ar">اضغط هنا للمحادثة المباشرة</span>
+            <span class="lang-en">Click Here for Direct Chat</span>
+        </a>
+        <p style="margin-top: 4rem; font-size: 0.85rem; color: #64748b;">
+            © 2026 Ahmed Belal. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        function toggleLanguage() {
+            const htmlTag = document.documentElement;
+            const currentLang = htmlTag.getAttribute('lang');
+            
+            if (currentLang === 'ar') {
+                htmlTag.setAttribute('lang', 'en');
+                htmlTag.setAttribute('dir', 'ltr');
+            } else {
+                htmlTag.setAttribute('lang', 'ar');
+                htmlTag.setAttribute('dir', 'rtl');
+            }
+        }
+    </script>
+</body>
+</html>
