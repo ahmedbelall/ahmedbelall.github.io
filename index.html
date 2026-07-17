@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أحمد بلال | Premium Full Stack & Marketing Expert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #0ea5e9;
+            --accent: #f43f5e;
+            --bg-dark: #070b14;
+            --card-bg: rgba(15, 23, 42, 0.4);
+            --text-light: #f8fafc;
+            --text-gray: #94a3b8;
+            --font-ar: 'Cairo', sans-serif;
+            --font-en: 'Outfit', sans-serif;
+        }
+
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--secondary); }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-ar);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        html[lang="ar"] .lang-en { display: none !important; }
+        html[lang="en"] .lang-ar { display: none !important; }
+        html[lang="en"] body { font-family: var(--font-en); }
+
+        /* الأشكال المتوهجة (Futuristic Blobs) */
+        .blob {
+            position: absolute;
+            filter: blur(150px);
+            z-index: -1;
+            opacity: 0.5;
+            border-radius: 50%;
+            animation: float 12s infinite alternate ease-in-out;
+        }
+        .blob-1 { top: -5%; left: 10%; width: 600px; height: 600px; background: rgba(139, 92, 246, 0.4); }
+        .blob-2 { bottom: 20%; right: -10%; width: 500px; height: 500px; background: rgba(14, 165, 233, 0.3); animation-delay: -5s; }
+        .blob-3 { top: 50%; left: -20%; width: 400px; height: 400px; background: rgba(244, 63, 94, 0.2); animation-duration: 15s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate(50px, 80px) scale(1.2) rotate(10deg); }
+        }
+
+        /* الناف بار الفضائي المودرن */
+        nav {
+            position: fixed;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 900px;
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.02);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--secondary));
+            -webkit-background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            z-index: -1;
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+        .lang-btn:hover::before { opacity: 1; }
+        .lang-btn:hover { box-shadow: 0 0 20px rgba(139, 92, 246, 0.8); transform: scale(1.05); }
+
+        /* الهيرو */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            padding-top: 8rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #c084fc, #38bdf8, #fb7185);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+            text-shadow: 0 0 30px rgba(192, 132, 252, 0.3);
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .typing-container {
+            font-size: 1.8rem;
+            color: #e2e8f0;
+            margin-bottom: 2rem;
+            height: 35px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .typing-text::after { content: '|'; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        header p {
+            max-width: 700px;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            line-height: 1.9;
+            margin-bottom: 3rem;
+        }
+
+        .buttons-group { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            border: 1px solid transparent;
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.7);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.03);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        /* الحاويات والانيميشن */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            font-weight: 900;
+            position: relative;
+            color: white;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+            border-radius: 50px;
+        }
+
+        /* الكروت الزجاجية العظيمة */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+        html[lang="en"] .glass-card { text-align: left; }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: -1;
+        }
+
+        .glass-card:hover::before { opacity: 1; }
+        .glass-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(139, 92, 246, 0.15);
+        }
+
+        .glass-card h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .glass-card p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .tags { margin-bottom: 1.5rem; }
+        .tags span {
+            background: rgba(255,255,255,0.03);
+            color: #38bdf8;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-block;
+            margin: 0 0 0.5rem 0.5rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* زر زيارة الموقع */
+        .live-link {
+            display: inline-block;
+            text-align: center;
+            padding: 0.8rem 1.5rem;
+            background: rgba(14, 165, 233, 0.1);
+            color: #38bdf8;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            transition: all 0.3s;
+            margin-top: auto;
+        }
+        .live-link:hover {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* كروت الأسعار للويب والسوشيال ميديا */
+        .price-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(244, 63, 94, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 900;
+            color: white;
+            margin: 0.5rem 0 0.5rem 0;
+            direction: ltr;
+        }
+        .price-amount span { font-size: 1.2rem; color: var(--text-gray); font-weight: normal;}
+
+        .delivery-time {
+            color: #fbbf24;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: rgba(251, 191, 36, 0.1);
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+
+        .features-list { list-style: none; margin-bottom: 2rem; text-align: right; }
+        html[lang="en"] .features-list { text-align: left; }
+        .features-list li {
+            margin-bottom: 1.2rem;
+            color: #cbd5e1;
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.6;
+        }
+        .features-list li::before {
+            content: "⚡";
+            margin-left: 10px;
+            font-size: 1.1rem;
+        }
+        html[lang="en"] .features-list li::before { margin-left: 0; margin-right: 10px; }
+
+        .sm-features li::before { content: "🔥"; }
+
+        /* الفوتر */
+        footer {
+            background: rgba(15, 23, 42, 0.8);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            padding: 5rem 2rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            nav { width: 95%; padding: 10px 20px; }
+            .nav-logo { font-size: 1.2rem; }
+            header h1 { font-size: 2.8rem; }
+            .buttons-group { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto;}
+            .btn { justify-content: center; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- الناف بار الفضائي -->
+    <nav>
+        <a href="#" class="nav-logo">A. BELAL</a>
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <span class="lang-ar">🌐 English</span>
+            <span class="lang-en">🌐 العربية</span>
+        </button>
+    </nav>
+
+    <!-- الهيرو -->
+    <header>
+        <div class="reveal active">
+            <h1>
+                <span class="lang-ar">أهلاً، أنا <span class="gradient-text">أحمد بلال</span></span>
+                <span class="lang-en">Hi, I'm <span class="gradient-text">Ahmed Belal</span></span>
+            </h1>
+            
+            <div class="typing-container">
+                <span class="typing-text" id="typewriter"></span>
+            </div>
+
+            <p>
+                <span class="lang-ar">أحول أفكارك إلى واقع رقمي مبهر. أقدم لك برمجة مواقع بتصميمات خيالية، سرعة لا تضاهى، أمان تام، بالإضافة إلى خطط تسويق وسوشيال ميديا تكتسح المنافسين.</span>
+                <span class="lang-en">I turn ideas into stunning digital realities. Delivering lightning-fast, ultra-secure websites and aggressive social media marketing plans to outpace your competition.</span>
+            </p>
+            
+            <div class="buttons-group">
+                <a href="https://wa.me/201500003346" target="_blank" class="btn btn-primary">
+                    📱 <span class="lang-ar">ابدأ مشروعك الآن</span><span class="lang-en">Start Your Project</span>
+                </a>
+                <a href="mailto:info@ahmedbelall.site" class="btn btn-outline">
+                    ✉️ <span class="lang-ar">تواصل عبر الإيميل</span><span class="lang-en">Email Me</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 7 مشاريع جبارة بلينكات حية -->
+    <div class="container" id="portfolio">
+        <h2 class="section-title reveal">
+            <span class="lang-ar">أبرز الأعمال</span>
+            <span class="lang-en">Premium Portfolio</span>
+        </h2>
+
+        <div class="grid">
+            <div class="glass-card reveal">
+                <h3>🛍️ <span class="lang-ar">متجر لوميير للأزياء</span><span class="lang-en">Lumière Fashion Store</span></h3>
+                <p>
+                    <span class="lang-ar">منصة تجارة إلكترونية متكاملة بـ UI/UX فاخر، سلة مشتريات ذكية، ودفع إلكتروني آمن.</span>
+                    <span class="lang-en">Full e-commerce platform with premium UI/UX, smart cart, and secure checkout.</span>
+                </p>
+                <div class="tags"><span>React.js</span> <span>Laravel</span> <span>Payment API</span></div>
+                <a href="#" class="live-link"><span class="lang-ar">🔗 زيارة الموقع</span><span class="lang-en">🔗 Live Demo</span></a>
+            </div>
+
+            <div class="glass-card reveal" style="transition-delay: 0.1s;">
+                <h3>🏢 <span class="lang-ar">أبيكس للعقارات</span><span class="lang-en">Apex Real Estate</span></h3>
+                <p>
+                    <span class="lang-ar">موقع مؤسسي عملاق يعرض المشاريع مع فلترة متقدمة للوحدات ونظام إدارة محتوى للشركة.</span>
+                    <span class="lang-en">Enterprise corporate site with advanced property filtering and custom CMS.</span>
+                </p>
+                <div class="tags"><span>PHP Laravel</span> <span>MySQL</span> <span>Advanced SEO</span></div>
+                <a href="#" class="live-link"><span class="lang-ar">🔗 زيارة الموقع</span><span class="lang-en">🔗 Live Demo</span></a>
+            </div>
+
+            <div class="glass-card reveal" style="transition-delay: 0.2s;">
+                <h3>🏥 <span class="lang-ar">عيادات كير بلس</span><span class="lang-en">CarePlus Clinics</span></h3>
+                <p>
+                    <span class="lang-ar">نظام ذكي للحجوزات الطبية يربط المرضى بالأطباء مع تحديثات لحظية ولوحة تحكم للإدارة.</span>
+                    <span class="lang-en">Smart medical booking system connecting patients with real-time updates.</span>
+                </p>
+                <div class="tags"><span>React</span> <span>Supabase</span> <span>Real-time</span></div>
+                <a href="#" class="live-link"><span class="lang-ar">🔗 زيارة الموقع</span><span class="lang-en">🔗 Live Demo</span></a>
+            </div>
+
+            <div class="glass-card reveal" style="transition-delay: 0.3s;">
+                <h3>🚀 <span class="lang-ar">منصة تيك نوفا</span><span class="lang-en">TechNova SaaS</span></h3>
+                <p>
+                    <span class="lang-ar">صفحة هبوط احترافية لشركة تقنية (SaaS) مصممة لزيادة المبيعات والتحويلات بشكل مباشر.</span>
+                    <span class="lang-en">Professional SaaS landing page optimized for high conversion rates.</span>
+                </p>
+                <div class="tags"><span>HTML5/CSS3</span> <span>GSAP Animations</span></div>
+                <a href="#" class="live-link"><span class="lang-ar">🔗 زيارة الموقع</span><span class="lang-en">🔗 Live Demo</span></a>
+            </div>
+
+            <div class="glass-card reveal" style="transition-delay: 0.4s;">
+                <h3>🚗 <span class="lang-ar">إيليت موتورز</span><span class="lang-en">Elite Motors</span></h3>
+                <p>
+                    <span class="lang-ar">معرض سيارات أونلاين يعرض الموديلات بصور عالية الجودة مع إمكانية حجز موعد تجربة قيادة.</span>
+                    <span class="lang-en">Online car dealership showcasing models with test-drive booking features.</span>
+                </p>
+                <div class="tags"><span>Laravel</span> <span>JavaScript</span> <span>Tailwind</span></div>
+                <a href="#" class="live-link"><span class="lang-ar">🔗 زيارة الموقع</span><span class="lang-en">🔗 Live Demo</span></a>
+            </div>
+
+            <div class="glass-card reveal" style="transition-delay: 0.5s;">
+                <h3>💪 <span class="lang-ar">فيت لايف جيم</span><span class="lang-en">FitLife Gym</span></h3>
+                <p>
+                    <span class="lang-ar">موقع لمركز لياقة بدنية يتيح للمتدربين الاشتراك في الباقات ومعرفة جداول الكلاسات الرياضية.</span>
+                    <span class="lang-en">Fitness center website allowing members to subscribe and view class schedules.</span>
+                </p>
+                <div class="tags"><span>React.js</span> <span>Firebase</span> <span>Stripe</span></div>
+                <a href="#" class="live-link"><span class="lang-ar">🔗 زيارة الموقع</span><span class="lang-en">🔗 Live Demo</span></a>
+            </div>
+
+            <div class="glass-card reveal" style="transition-delay: 0.6s;">
+                <h3>📚 <span class="lang-ar">إديو سمارت للتعليم</span><span class="lang-en">EduSmart E-Learning</span></h3>
+                <p>
+                    <span class="lang-ar">منصة تعليمية متكاملة لرفع الكورسات، امتحانات أونلاين، واستخراج شهادات للطلاب بشكل آلي.</span>
+                    <span class="lang-en">Comprehensive E-learning platform with video hosting, quizzes, and certificates.</span>
+                </p>
+                <div class="tags"><span>Laravel</span> <span>Vue.js</span> <span>Video API</span></div>
+                <a href="#" class="live-link"><span class="lang-ar">🔗 زيارة الموقع</span><span class="lang-en">🔗 Live Demo</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- باقات تطوير الويب -->
+    <div class="container" id="web-pricing">
+        <h2 class="section-title reveal">
+            <span class="lang-ar">باقات تصميم وبرمجة المواقع</span>
+            <span class="lang-en">Web Development Packages</span>
+        </h2>
+
+        <div class="grid">
+            <div class="glass-card text-center reveal">
+                <div class="price-badge"><span class="lang-ar">الأساسية</span><span class="lang-en">Basic</span></div>
+                <h3><span class="lang-ar">صفحة هبوط / موقع شخصي</span><span class="lang-en">Landing Page</span></h3>
+                <div class="price-amount">8,000 <span>EGP</span></div>
+                <div class="delivery-time">⏳ <span class="lang-ar">مدة التسليم: أسبوعين (14 يوم)</span><span class="lang-en">Delivery: 2 Weeks</span></div>
+                <ul class="features-list">
+                    <li><span class="lang-ar">تصميم مستقبلي وجذاب (صفحة واحدة طويلة).</span><span class="lang-en">Futuristic single-page design.</span></li>
+                    <li><span class="lang-ar">تجاوب مثالي مع الموبايل والتابلت.</span><span class="lang-en">Perfect mobile responsiveness.</span></li>
+                    <li><span class="lang-ar">ربط السوشيال ميديا ونماذج التواصل.</span><span class="lang-en">Social media & contact form integration.</span></li>
+                </ul>
+                <a href="https://wa.me/201500003346" class="btn btn-outline" style="justify-content: center; margin-top: auto;">
+                    <span class="lang-ar">طلب الباقة</span><span class="lang-en">Order Package</span>
+                </a>
+            </div>
+
+            <div class="glass-card text-center reveal" style="border-color: var(--primary); box-shadow: 0 0 30px rgba(139,92,246,0.2);">
+                <div class="price-badge" style="background: var(--primary); color: white;"><span class="lang-ar">الأكثر طلباً للشركات</span><span class="lang-en">Best for Corporates</span></div>
+                <h3><span class="lang-ar">موقع شركات تعريفي متكامل</span><span class="lang-en">Corporate Website</span></h3>
+                <div class="price-amount">19,000 <span>EGP</span></div>
+                <div class="delivery-time">⏳ <span class="lang-ar">مدة التسليم: 3 إلى 4 أسابيع</span><span class="lang-en">Delivery: 3 - 4 Weeks</span></div>
+                <ul class="features-list">
+                    <li><span class="lang-ar">موقع متعدد الصفحات مع لوحة تحكم ذكية للإدارة.</span><span class="lang-en">Multi-page site with smart admin dashboard.</span></li>
+                    <li><span class="lang-ar">أمان تام (تشفير ضد حقن البيانات والاختراق).</span><span class="lang-en">High-end security against injections & hacking.</span></li>
+                    <li><span class="lang-ar">أرشفة متقدمة في جوجل (SEO) لتصدر البحث.</span><span class="lang-en">Advanced SEO for Google ranking.</span></li>
+                </ul>
+                <a href="https://wa.me/201500003346" class="btn btn-primary" style="justify-content: center; margin-top: auto;">
+                    <span class="lang-ar">طلب الباقة</span><span class="lang-en">Order Package</span>
+                </a>
+            </div>
+
+            <div class="glass-card text-center reveal">
+                <div class="price-badge"><span class="lang-ar">التجارة الإلكترونية</span><span class="lang-en">E-Commerce</span></div>
+                <h3><span class="lang-ar">متجر إلكتروني شامل</span><span class="lang-en">E-Commerce Platform</span></h3>
+                <div style="font-size: 1rem; color: var(--text-gray);"><span class="lang-ar">يبدأ من</span><span class="lang-en">Starts from</span></div>
+                <div class="price-amount">55,000 <span>EGP</span></div>
+                <div class="delivery-time">⏳ <span class="lang-ar">مدة التسليم: 4 إلى 5 أسابيع</span><span class="lang-en">Delivery: 4 - 5 Weeks</span></div>
+                <ul class="features-list">
+                    <li><span class="lang-ar">منتجات لا محدودة، سلة تسوق، وبوابات دفع.</span><span class="lang-en">Unlimited products, cart, & payment gateways.</span></li>
+                    <li><span class="lang-ar">إدارة مخزون، فواتير، وتتبع حالات الطلبات.</span><span class="lang-en">Inventory management & order tracking.</span></li>
+                    <li><span class="lang-ar">أداء خارق لاستيعاب آلاف الزوار يومياً.</span><span class="lang-en">High performance for heavy daily traffic.</span></li>
+                </ul>
+                <a href="https://wa.me/201500003346" class="btn btn-outline" style="justify-content: center; margin-top: auto;">
+                    <span class="lang-ar">طلب الباقة</span><span class="lang-en">Order Package</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- باقات السوشيال ميديا (الجديدة) -->
+    <div class="container" id="sm-pricing" style="padding-top: 0;">
+        <h2 class="section-title reveal" style="color: #38bdf8;">
+            <span class="lang-ar">باقات إدارة السوشيال ميديا والمحتوى</span>
+            <span class="lang-en">Social Media & Content Packages</span>
+        </h2>
+        <p class="reveal" style="text-align:center; color:var(--text-gray); margin-top:-2rem; margin-bottom:3rem; font-size:1.1rem;">
+            <span class="lang-ar">⚠️ (جميع الباقات تشمل صناعة المحتوى وغير شاملة الميزانية المدفوعة لمنصات الإعلانات)</span>
+            <span class="lang-en">⚠️ (All packages include content creation and exclude ad spend budget)</span>
+        </p>
+
+        <div class="grid">
+            <!-- باقة البداية -->
+            <div class="glass-card text-center reveal" style="border-top: 2px solid #38bdf8;">
+                <h3><span class="lang-ar">باقة الانطلاق 🚀</span><span class="lang-en">Starter Pack 🚀</span></h3>
+                <div style="font-size: 1rem; color: var(--text-gray);"><span class="lang-ar">تبدأ من</span><span class="lang-en">Starts from</span></div>
+                <div class="price-amount" style="color: #38bdf8;">9,000 <span>EGP / Month</span></div>
+                <ul class="features-list sm-features">
+                    <li><span class="lang-ar">إدارة حسابين (مثل فيسبوك وإنستجرام).</span><span class="lang-en">Manage 2 platforms (e.g., FB & Insta).</span></li>
+                    <li><span class="lang-ar">كتابة محتوى وتصميم 12 بوست شهرياً.</span><span class="lang-en">Copywriting & design for 12 posts/month.</span></li>
+                    <li><span class="lang-ar">مونتاج وتجهيز 4 فيديوهات قصيرة (Reels).</span><span class="lang-en">Editing 4 short videos (Reels).</span></li>
+                    <li><span class="lang-ar">تجهيز وإطلاق حملات إعلانية أساسية.</span><span class="lang-en">Setup and launch basic ad campaigns.</span></li>
+                </ul>
+                <a href="https://wa.me/201500003346" class="btn btn-outline" style="justify-content: center; margin-top: auto; border-color: #38bdf8;">
+                    <span class="lang-ar">احجز الباقة</span><span class="lang-en">Book Now</span>
+                </a>
+            </div>
+
+            <!-- باقة النمو -->
+            <div class="glass-card text-center reveal" style="border-top: 2px solid var(--accent);">
+                <div class="price-badge" style="background: var(--accent); color: white; border:none;"><span class="lang-ar">الأفضل للانتشار</span><span class="lang-en">Best for Growth</span></div>
+                <h3><span class="lang-ar">باقة النمو السريع 🔥</span><span class="lang-en">Growth Pack 🔥</span></h3>
+                <div class="price-amount" style="color: var(--accent);">15,000 <span>EGP / Month</span></div>
+                <ul class="features-list sm-features">
+                    <li><span class="lang-ar">إدارة 3 منصات سوشيال ميديا باحترافية.</span><span class="lang-en">Professional management of 3 platforms.</span></li>
+                    <li><span class="lang-ar">تصميم 20 بوست وإدارة الستوريز اليومية.</span><span class="lang-en">20 posts + daily story management.</span></li>
+                    <li><span class="lang-ar">مونتاج 8 فيديوهات Reels بجودة عالية.</span><span class="lang-en">High-quality editing for 8 Reels.</span></li>
+                    <li><span class="lang-ar">إدارة حملات (Media Buying) متقدمة للاستحواذ.</span><span class="lang-en">Advanced Media Buying for acquisition.</span></li>
+                </ul>
+                <a href="https://wa.me/201500003346" class="btn btn-outline" style="justify-content: center; margin-top: auto; background: rgba(244, 63, 94, 0.1); border-color: var(--accent);">
+                    <span class="lang-ar">احجز الباقة</span><span class="lang-en">Book Now</span>
+                </a>
+            </div>
+
+            <!-- باقة الهيمنة -->
+            <div class="glass-card text-center reveal" style="border-top: 2px solid #a855f7;">
+                <h3><span class="lang-ar">باقة الهيمنة 👑</span><span class="lang-en">Dominance Pack 👑</span></h3>
+                <div class="price-amount" style="color: #a855f7;">25,000 <span>EGP / Month</span></div>
+                <ul class="features-list sm-features">
+                    <li><span class="lang-ar">تغطية شاملة لجميع منصات السوشيال ميديا.</span><span class="lang-en">Full coverage on all social platforms.</span></li>
+                    <li><span class="lang-ar">محتوى يومي مكثف (تصميمات + Reels).</span><span class="lang-en">Intensive daily content (Posts + Reels).</span></li>
+                    <li><span class="lang-ar">إدارة ميزانيات إعلانية ضخمة باحترافية.</span><span class="lang-en">Professional management of large ad budgets.</span></li>
+                    <li><span class="lang-ar">تقارير أداء أسبوعية، وتحليل للمنافسين.</span><span class="lang-en">Weekly performance reports & competitor analysis.</span></li>
+                </ul>
+                <a href="https://wa.me/201500003346" class="btn btn-outline" style="justify-content: center; margin-top: auto; border-color: #a855f7;">
+                    <span class="lang-ar">احجز الباقة</span><span class="lang-en">Book Now</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="reveal">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">
+            <span class="lang-ar">فلنصنع شيئاً عظيماً!</span>
+            <span class="lang-en">Let's build something great!</span>
+        </h2>
+        <p style="color: var(--text-gray); font-size: 1.2rem; margin-bottom: 2rem;">
+            <span class="lang-ar">سواء كان موقعاً يكتسح السوق أو حملة تسويقية تضاعف أرباحك.</span>
+            <span class="lang-en">Whether a market-dominating site or profit-multiplying ads.</span>
+        </p>
+        
+        <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 3rem;">
+            <a href="https://wa.me/201500003346" target="_blank" class="btn btn-primary" style="font-size:1.2rem;">
+                📱 01500003346
+            </a>
+            <a href="mailto:info@ahmedbelall.site" class="btn btn-outline" style="font-size:1.2rem;">
+                ✉️ info@ahmedbelall.site
+            </a>
+        </div>
+
+        <p style="font-size: 1rem; color: rgba(255,255,255,0.3);">
+            © 2026 Ahmed Belal. Premium Digital Solutions.
+        </p>
+    </footer>
+
+    <script>
+        // تغيير اللغة
+        function toggleLanguage() {
+            const htmlTag = document.documentElement;
+            const currentLang = htmlTag.getAttribute('lang');
+            
+            if (currentLang === 'ar') {
+                htmlTag.setAttribute('lang', 'en');
+                htmlTag.setAttribute('dir', 'ltr');
+                currentTexts = textsEn;
+            } else {
+                htmlTag.setAttribute('lang', 'ar');
+                htmlTag.setAttribute('dir', 'rtl');
+                currentTexts = textsAr;
+            }
+            textIndex = 0;
+            charIndex = 0;
+            document.getElementById("typewriter").innerHTML = "";
+        }
+
+        // أنيميشن الظهور السلس
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 120;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); 
+
+        // تأثير الكتابة الآلية
+        const textsAr = ["Premium Full Stack Developer", "Elite Media Buyer", "Tech & Marketing Partner", "مطور ويب خبير ومسوق رقمي"];
+        const textsEn = ["Premium Full Stack Developer", "Elite Media Buyer", "Tech & Marketing Partner", "Your Digital Growth Expert"];
+        let currentTexts = textsAr;
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function typeWriter() {
+            const element = document.getElementById("typewriter");
+            const currentText = currentTexts[textIndex];
+
+            if (isDeleting) {
+                element.innerHTML = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 40;
+            } else {
+                element.innerHTML = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 80;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                typeSpeed = 2000; 
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % currentTexts.length;
+                typeSpeed = 500; 
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            if(document.documentElement.getAttribute('lang') === 'en') {
+                currentTexts = textsEn;
+            }
+            setTimeout(typeWriter, 1000);
+        });
+    </script>
+</body>
+</html>
